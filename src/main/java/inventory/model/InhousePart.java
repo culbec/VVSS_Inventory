@@ -6,16 +6,16 @@ public class InhousePart extends Part {
     private int machineId;
 
     // Constructor
-    public InhousePart(int partId, String name, double price, int inStock, int min, int max, int machineId) {
-        super(partId, name, price, inStock, min, max);
+    public InhousePart(String name, double price, int inStock, int min, int max, int machineId) {
+        super(name, price, inStock, min, max);
         this.machineId = machineId;
     }
-    
+
     // Getter
     public int getMachineId() {
         return machineId;
     }
-    
+
     // Setter
     public void setMachineId(int machineId) {
         this.machineId = machineId;
@@ -23,7 +23,7 @@ public class InhousePart extends Part {
 
     @Override
     public String toString() {
-        return "I,"+super.toString()+","+getMachineId();
+        return "I," + super.toString() + "," + getMachineId();
     }
 }
 
