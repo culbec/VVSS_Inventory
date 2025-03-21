@@ -15,24 +15,21 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
 import java.util.ResourceBundle;
 
-import static inventory.controller.MainScreenController.getModifyProductIndex;
 
 public class ModifyProductController implements Initializable, Controller {
-    
+    private final Logger logger = LogManager.getLogger(ModifyProductController.class);
     // Declare fields
-    private Stage stage;
-    private Parent scene;
     private ObservableList<Part> addParts = FXCollections.observableArrayList();
-    private String errorMessage = new String();
     private int productId;
-    private int productIndex = getModifyProductIndex();
-
+    private int productIndex;
     private InventoryService service;
 
     @FXML
@@ -86,14 +83,17 @@ public class ModifyProductController implements Initializable, Controller {
     @FXML
     private TableColumn<Part, Double> deleteProductPriceCol;
 
-    public ModifyProductController(){}
-
-    public void setService(InventoryService service){
-        this.service=service;
+    public void setService(InventoryService service) {
+        this.service = service;
         fillWithData();
     }
 
-    private void fillWithData(){
+    public void setProductIndex(int productIndex) {
+        this.productIndex = productIndex;
+    }
+
+
+    private void fillWithData() {
         // Populate add product table view
         addProductTableView.setItems(service.getAllParts());
 
@@ -117,39 +117,42 @@ public class ModifyProductController implements Initializable, Controller {
         addParts = product.getAssociatedParts();
         updateDeleteProductTableView();
     }
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        fillWithData();
     }
 
 
     /**
      * Method to add to button handler to switch to scene passed as source
-     * @param event
-     * @param source
-     * @throws IOException
+     *
+     * @param event  The event that happened
+     * @param source The source of the event
+     * @throws IOException If an error occurs in displaying the scene
      */
     @FXML
     private void displayScene(ActionEvent event, String source) throws IOException {
-        stage = (Stage)((Button)event.getSource()).getScene().getWindow();
-        FXMLLoader loader= new FXMLLoader(getClass().getResource(source));
-        //scene = FXMLLoader.load(getClass().getResource(source));
-        scene = loader.load();
-        Controller ctrl=loader.getController();
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(source));
+        Parent scene = loader.load();
+
+        Controller ctrl = loader.getController();
         ctrl.setService(service);
         stage.setScene(new Scene(scene));
         stage.show();
     }
-    
+
     /**
      * Method to add values of addParts to the bottom table view of the scene.
      */
     public void updateDeleteProductTableView() {
         deleteProductTableView.setItems(addParts);
-        
+
         deleteProductIdCol.setCellValueFactory(new PropertyValueFactory<>("partId"));
         deleteProductNameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
         deleteProductInventoryCol.setCellValueFactory(new PropertyValueFactory<>("inStock"));
@@ -158,10 +161,10 @@ public class ModifyProductController implements Initializable, Controller {
 
     /**
      * Ask user for confirmation before deleting selected part from current product.
-     * @param event 
+     *
      */
     @FXML
-    void handleDeleteProduct(ActionEvent event) {
+    void handleDeleteProduct() {
         Part part = deleteProductTableView.getSelectionModel().getSelectedItem();
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
@@ -171,31 +174,32 @@ public class ModifyProductController implements Initializable, Controller {
         alert.setContentText("Are you sure you want to delete part " + part.getName() + " from parts?");
         Optional<ButtonType> result = alert.showAndWait();
 
-        if (result.get() == ButtonType.OK) {
-            System.out.println("Part deleted.");
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            logger.info("Part " + part.getName() + " deleted from product.");
             addParts.remove(part);
         } else {
-            System.out.println("Canceled part deletion.");
+            logger.info("Canceled part deletion.");
         }
     }
-    
+
     /**
      * Add selected part from top table view to bottom table view in order to create
      * new product
-     * @param event 
+     *
      */
     @FXML
-    void handleAddProduct(ActionEvent event) {
+    void handleAddProduct() {
         Part part = addProductTableView.getSelectionModel().getSelectedItem();
         addParts.add(part);
-        updateDeleteProductTableView();   
+        updateDeleteProductTableView();
     }
 
     /**
      * Ask user for confirmation before canceling product modification
      * and switching scene to Main Screen
-     * @param event
-     * @throws IOException
+     *
+     * @param event The event that happened
+     * @throws IOException If there is an error cancelling the product modification
      */
     @FXML
     void handleCancelProduct(ActionEvent event) throws IOException {
@@ -205,19 +209,20 @@ public class ModifyProductController implements Initializable, Controller {
         alert.setHeaderText("Confirm Cancelation");
         alert.setContentText("Are you sure you want to cancel modifying product?");
         Optional<ButtonType> result = alert.showAndWait();
-        if(result.get() == ButtonType.OK) {
-            System.out.println("Ok selected. Product modification canceled.");
+        if (result.isPresent() && result.get() == ButtonType.OK) {
+            logger.info("Ok selected. Product modification canceled.");
             displayScene(event, "/fxml/MainScreen.fxml");
         } else {
-            System.out.println("Cancel clicked.");
+            logger.info("Cancel clicked.");
         }
     }
 
     /**
      * Validate given product parameters.  If valid, update product in inventory,
      * else give user an error message explaining why the product is invalid.
-     * @param event
-     * @throws IOException
+     *
+     * @param event The event that happened
+     * @throws IOException If there was an error saving the product
      */
     @FXML
     void handleSaveProduct(ActionEvent event) throws IOException {
@@ -226,22 +231,24 @@ public class ModifyProductController implements Initializable, Controller {
         String inStock = inventoryTxt.getText();
         String min = minTxt.getText();
         String max = maxTxt.getText();
-        errorMessage = "";
-        
+
         try {
-            errorMessage = Product.isValidProduct(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts, errorMessage);
-            if(errorMessage.length() > 0) {
+            Product product = new Product(name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
+            product.setProductId(productId);
+
+            String errorMessage = Product.isValidProduct(product);
+            if (!errorMessage.isEmpty()) {
                 Alert alert = new Alert(Alert.AlertType.INFORMATION);
                 alert.setTitle("Error Adding Part!");
                 alert.setHeaderText("Error!");
                 alert.setContentText(errorMessage);
                 alert.showAndWait();
             } else {
-                service.updateProduct(productIndex, productId, name, Double.parseDouble(price), Integer.parseInt(inStock), Integer.parseInt(min), Integer.parseInt(max), addParts);
+                service.updateProduct(productIndex, product);
                 displayScene(event, "/fxml/MainScreen.fxml");
             }
         } catch (NumberFormatException e) {
-            System.out.println("Form contains blank field.");
+            logger.error("Form contains blank field.");
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Product!");
             alert.setHeaderText("Error!");
@@ -252,10 +259,10 @@ public class ModifyProductController implements Initializable, Controller {
 
     /**
      * Gets search text and inputs into lookupAssociatedPart method to highlight desired part
-     * @param event 
+     *
      */
     @FXML
-    void handleSearchProduct(ActionEvent event) {
+    void handleSearchProduct() {
         String x = productSearchTxt.getText();
         addProductTableView.getSelectionModel().select(service.lookupPart(x));
     }
