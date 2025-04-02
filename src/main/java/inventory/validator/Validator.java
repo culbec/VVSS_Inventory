@@ -8,7 +8,8 @@ import inventory.model.Product;
 import java.util.Objects;
 
 public class Validator {
-    private Validator() {}
+    private Validator() {
+    }
 
     public static void isValidProduct(Product product) throws ValidatorException {
         StringBuilder errorBuilder = new StringBuilder();
@@ -42,6 +43,10 @@ public class Validator {
 
         if (product.getMin() >= 0 && product.getMax() >= 0 && product.getMin() > product.getMax()) {
             errorBuilder.append("Product min > product max");
+        }
+
+        if (product.getMin() > product.getMax() || product.getMax() < product.getInStock()) {
+            errorBuilder.append("Product inStock not between Product min and Product max");
         }
 
         if (product.getAssociatedParts().isEmpty()) {
@@ -85,6 +90,10 @@ public class Validator {
 
         if (part.getMin() >= 0 && part.getMax() >= 0 && part.getMin() > part.getMax()) {
             errorBuilder.append("Part min > part max");
+        }
+
+        if (part.getMin() > part.getInStock() || part.getMax() < part.getInStock()) {
+            errorBuilder.append("Part inStock not between Part min and Part max");
         }
 
         if (part instanceof InhousePart inhousePart && inhousePart.getMachineId() < 0) {
