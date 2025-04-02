@@ -5,6 +5,8 @@ import inventory.model.OutsourcedPart;
 import inventory.model.Part;
 import inventory.model.Product;
 import inventory.repository.InventoryRepository;
+import inventory.validator.Validator;
+import inventory.validator.ValidatorException;
 import javafx.collections.ObservableList;
 
 public class InventoryService {
@@ -15,20 +17,23 @@ public class InventoryService {
         this.repo = repo;
     }
 
-    public void addInhousePart(String name, double price, int inStock, int min, int max, int partDynamicValue) {
+    public void addInhousePart(String name, double price, int inStock, int min, int max, int partDynamicValue) throws ValidatorException {
         InhousePart inhousePart = new InhousePart(name, price, inStock, min, max, partDynamicValue);
+        Validator.isValidPart(inhousePart);
         inhousePart.setPartId(repo.getAutoPartId());
         repo.addPart(inhousePart);
     }
 
-    public void addOutsourcePart(String name, double price, int inStock, int min, int max, String partDynamicValue) {
+    public void addOutsourcePart(String name, double price, int inStock, int min, int max, String partDynamicValue) throws ValidatorException {
         OutsourcedPart outsourcedPart = new OutsourcedPart(name, price, inStock, min, max, partDynamicValue);
+        Validator.isValidPart(outsourcedPart);
         outsourcedPart.setPartId(repo.getAutoPartId());
         repo.addPart(outsourcedPart);
     }
 
-    public void addProduct(String name, double price, int inStock, int min, int max, ObservableList<Part> addParts) {
+    public void addProduct(String name, double price, int inStock, int min, int max, ObservableList<Part> addParts) throws ValidatorException {
         Product product = new Product(name, price, inStock, min, max, addParts);
+        Validator.isValidProduct(product);
         product.setProductId(repo.getAutoProductId());
         repo.addProduct(product);
     }
