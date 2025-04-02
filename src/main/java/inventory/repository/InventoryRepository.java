@@ -12,10 +12,17 @@ import java.util.StringTokenizer;
 public class InventoryRepository {
     private static final String ITEMS_FILE = "data/items.txt";
     private final Logger logger = LogManager.getLogger(InventoryRepository.class);
-    private Inventory inventory;
+
+    private ObservableList<Product> allProducts;
+    private ObservableList<Part> allParts;
+    private int autoPartId;
+    private int autoProductId;
 
     public InventoryRepository() {
-        this.inventory = new Inventory();
+        this.allProducts = FXCollections.observableArrayList();
+        this.allParts = FXCollections.observableArrayList();
+        this.autoProductId = 0;
+        this.autoPartId = 0;
         readParts();
         readProducts();
     }
@@ -34,7 +41,8 @@ public class InventoryRepository {
         } catch (IOException e) {
             logger.error("Reading parts failed, reason: {}", e.getMessage());
         }
-        inventory.setAllParts(listP);
+
+        allParts = listP;
     }
 
     private Part getPartFromString(String line) {
@@ -46,7 +54,7 @@ public class InventoryRepository {
         String type = st.nextToken();
 
         int id = Integer.parseInt(st.nextToken());
-        inventory.setAutoPartId(id);
+        autoPartId = id;
         String name = st.nextToken();
         double price = Double.parseDouble(st.nextToken());
         int inStock = Integer.parseInt(st.nextToken());
@@ -88,7 +96,8 @@ public class InventoryRepository {
         } catch (IOException e) {
             logger.error("Reading products failed, reason: {}", e.getMessage());
         }
-        inventory.setProducts(listP);
+
+        allProducts = listP;
     }
 
     private Product getProductFromString(String line) {
@@ -101,7 +110,7 @@ public class InventoryRepository {
 
         if (type.equals("P")) {
             int id = Integer.parseInt(st.nextToken());
-            inventory.setAutoProductId(id);
+            autoProductId = id;
             String name = st.nextToken();
             double price = Double.parseDouble(st.nextToken());
             int inStock = Integer.parseInt(st.nextToken());
@@ -113,7 +122,7 @@ public class InventoryRepository {
             ObservableList<Part> list = FXCollections.observableArrayList();
             while (ids.hasMoreTokens()) {
                 String idP = ids.nextToken();
-                Part part = inventory.lookupPart(idP);
+                Part part = this.lookupPart(idP);
                 if (part != null)
                     list.add(part);
             }
@@ -131,8 +140,8 @@ public class InventoryRepository {
     public void writeAll() {
         File file = new File(ITEMS_FILE);
 
-        ObservableList<Part> parts = inventory.getAllParts();
-        ObservableList<Product> products = inventory.getProducts();
+        ObservableList<Part> parts = getAllParts();
+        ObservableList<Product> products = getAllProducts();
 
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(file))) {
             for (Part p : parts) {
@@ -160,64 +169,98 @@ public class InventoryRepository {
     }
 
     public void addPart(Part part) {
-        inventory.addPart(part);
+        allParts.add(part);
         writeAll();
     }
 
     public void addProduct(Product product) {
-        inventory.addProduct(product);
+        allProducts.add(product);
         writeAll();
     }
 
     public int getAutoPartId() {
-        return inventory.getAutoPartId();
+        return autoPartId;
     }
 
     public int getAutoProductId() {
-        return inventory.getAutoProductId();
+        return autoProductId;
     }
 
     public ObservableList<Part> getAllParts() {
-        return inventory.getAllParts();
+        return this.allParts;
     }
 
     public ObservableList<Product> getAllProducts() {
-        return inventory.getProducts();
+        return this.allProducts;
     }
 
-    public Part lookupPart(String search) {
-        return inventory.lookupPart(search);
+    /**
+     * Accepts search parameter and if an ID or name matches input, that part is returned
+     *
+     * @param searchItem The search parameter
+     * @return The part that matched the search parameter or null if no match
+     */
+    public Part lookupPart(String searchItem) {
+        for (Part p : allParts) {
+            if (p.getName().contains(searchItem) || (p.getPartId() + "").equals(searchItem)) return p;
+        }
+
+        logger.warn("No part with '{}' found", searchItem);
+        return null;
     }
 
-    public Product lookupProduct(String search) {
-        return inventory.lookupProduct(search);
+    /**
+     * Accepts search parameter and if an ID or name matches input, that product is returned
+     *
+     * @param searchItem The search parameter
+     * @return The product that matched the search parameter or null if no match
+     */
+    public Product lookupProduct(String searchItem) {
+        for (Product p : allProducts) {
+            if (p.getName().contains(searchItem) || (p.getProductId() + "").equals(searchItem)) {
+                return p;
+            }
+        }
+
+        logger.warn("No product with name '{}' found", searchItem);
+        return null;
     }
 
-    public void updatePart(int partIndex, Part part) {
-        inventory.updatePart(partIndex, part);
-        writeAll();
+    /**
+     * Update part at given index
+     *
+     * @param index The index of the part to be updated
+     * @param part  The part that will replace the part at the given index
+     */
+    public void updatePart(int index, Part part) {
+        allParts.set(index, part);
     }
 
-    public void updateProduct(int productIndex, Product product) {
-        inventory.updateProduct(productIndex, product);
-        writeAll();
+    /**
+     * Update product at given index
+     *
+     * @param index   The index of the item to be replaced
+     * @param product The product to replace the item on that index
+     */
+    public void updateProduct(int index, Product product) {
+        allProducts.set(index, product);
     }
 
+    /**
+     * Removes part passed as parameter from allParts
+     *
+     * @param part The part to be removed
+     */
     public void deletePart(Part part) {
-        inventory.deletePart(part);
-        writeAll();
+        allParts.remove(part);
     }
 
+    /**
+     * Remove product from observable list products
+     *
+     * @param product The product to be removed
+     */
     public void deleteProduct(Product product) {
-        inventory.removeProduct(product);
-        writeAll();
-    }
-
-    public Inventory getInventory() {
-        return inventory;
-    }
-
-    public void setInventory(Inventory inventory) {
-        this.inventory = inventory;
+        allProducts.remove(product);
     }
 }
