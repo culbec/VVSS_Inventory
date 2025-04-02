@@ -87,7 +87,7 @@ public class Validator {
             errorBuilder.append("Part min > part max");
         }
 
-        if (part instanceof InhousePart inhousePart && inhousePart.getPartId() < 0) {
+        if (part instanceof InhousePart inhousePart && inhousePart.getMachineId() < 0) {
             errorBuilder.append("Part machineId is negative");
         } else if (part instanceof OutsourcedPart outsourcedPart && (outsourcedPart.getCompanyName().isEmpty() || outsourcedPart.getCompanyName().isBlank())) {
             errorBuilder.append("Part companyName is empty");

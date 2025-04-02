@@ -2,6 +2,7 @@ package inventory.controller;
 
 import inventory.model.Part;
 import inventory.service.InventoryService;
+import inventory.validator.ValidatorException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -164,7 +165,7 @@ public class AddPartController implements Initializable, Controller {
                 displayScene(event, "/fxml/MainScreen.fxml");
             }
 
-        } catch (NumberFormatException e) {
+        } catch (NumberFormatException | ValidatorException e) {
             logger.error("Error adding part: " + e.getMessage());
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setTitle("Error Adding Part!");

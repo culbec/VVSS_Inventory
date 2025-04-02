@@ -11,6 +11,7 @@ import java.util.StringTokenizer;
 
 public class InventoryRepository {
     private static final String ITEMS_FILE = "data/items.txt";
+
     private final Logger logger = LogManager.getLogger(InventoryRepository.class);
 
     private ObservableList<Product> allProducts;
@@ -18,14 +19,15 @@ public class InventoryRepository {
     private int autoPartId;
     private int autoProductId;
 
-    public InventoryRepository() {
+    public InventoryRepository(Boolean isTesting) {
         this.allProducts = FXCollections.observableArrayList();
         this.allParts = FXCollections.observableArrayList();
         this.autoProductId = 0;
         this.autoPartId = 0;
+        if(!isTesting){
         readParts();
         readProducts();
-    }
+    }}
 
     public void readParts() {
         File file = new File(ITEMS_FILE);

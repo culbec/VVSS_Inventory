@@ -23,7 +23,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        InventoryRepository repo = new InventoryRepository();
+        InventoryRepository repo = new InventoryRepository(false);
         InventoryService service = new InventoryService(repo);
 
         logger.info("Starting application");
