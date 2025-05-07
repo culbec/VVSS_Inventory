@@ -7,7 +7,7 @@ import org.junit.jupiter.api.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @DisplayName("Tests for F01a - Name and Price Validations Only")
-class InventoryServiceTest {
+public class InventoryServiceTest {
 
     private InventoryService service;
 
