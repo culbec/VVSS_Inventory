@@ -124,6 +124,11 @@
                 <configuration>
                     <argLine>
                         --illegal-access=permit
+                        --add-opens inventory.test=ALL-UNNAMED
+                        --add-opens inventory.model=ALL-UNNAMED
+                        --add-opens inventory.service=ALL-UNNAMED
+                        --add-opens inventory.repository=ALL-UNNAMED
+                        --add-opens inventory.validator=ALL-UNNAMED
                     </argLine>
                     <!--                          <failIfNoTests>false</failIfNoTests>-->
                 </configuration>
