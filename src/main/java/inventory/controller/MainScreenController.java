@@ -110,9 +110,11 @@ public class MainScreenController implements Initializable, Controller {
         Controller ctrl = loader.getController();
         ctrl.setService(service);
 
-        if (ctrl instanceof ModifyProductController modifyProductController) {
+        if (ctrl instanceof ModifyProductController) {
+            ModifyProductController modifyProductController = (ModifyProductController) ctrl;
             modifyProductController.setProductIndex(modifyProductIndex);
-        } else if (ctrl instanceof ModifyPartController modifyPartController) {
+        } else if (ctrl instanceof ModifyPartController) {
+            ModifyPartController modifyPartController = (ModifyPartController) ctrl;
             modifyPartController.setPartIndex(modifyPartIndex);
         }
 

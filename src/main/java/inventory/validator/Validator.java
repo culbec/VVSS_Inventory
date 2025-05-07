@@ -53,7 +53,7 @@ public class Validator {
             errorBuilder.append("Product associated parts is empty");
         }
 
-        if (!errorBuilder.isEmpty()) {
+        if (errorBuilder.length() == 0) {
             throw new ValidatorException(errorBuilder.toString());
         }
     }
@@ -96,14 +96,20 @@ public class Validator {
             errorBuilder.append("Part inStock not between Part min and Part max");
         }
 
-        if (part instanceof InhousePart inhousePart && inhousePart.getMachineId() < 0) {
-            errorBuilder.append("Part machineId is negative");
-        } else if (part instanceof OutsourcedPart outsourcedPart && (outsourcedPart.getCompanyName().isEmpty() || outsourcedPart.getCompanyName().isBlank())) {
-            errorBuilder.append("Part companyName is empty");
+        if (part instanceof InhousePart) {
+            InhousePart inhousePart = (InhousePart) part;
+            if (inhousePart.getMachineId() < 0) {
+                errorBuilder.append("Part machineId is negative");
+            }
+        } else if (part instanceof OutsourcedPart) {
+            OutsourcedPart outsourcedPart = (OutsourcedPart) part;
+            if (outsourcedPart.getCompanyName().isEmpty() || outsourcedPart.getCompanyName().isBlank()) {
+                errorBuilder.append("Part companyName is empty");
+            }
         }
 
 
-        if (!errorBuilder.isEmpty()) {
+        if (errorBuilder.length() == 0) {
             throw new ValidatorException(errorBuilder.toString());
         }
     }
