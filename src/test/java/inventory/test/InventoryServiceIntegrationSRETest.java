@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-public class InventoryServiceIntegrationTestSRE {
+public class InventoryServiceIntegrationSRETest {
 
     private InventoryService service;
 
