@@ -53,7 +53,7 @@ public class Validator {
             errorBuilder.append("Product associated parts is empty");
         }
 
-        if (errorBuilder.length() == 0) {
+        if (errorBuilder.length() > 0) {
             throw new ValidatorException(errorBuilder.toString());
         }
     }
@@ -109,7 +109,7 @@ public class Validator {
         }
 
 
-        if (errorBuilder.length() == 0) {
+        if (errorBuilder.length() > 0) {
             throw new ValidatorException(errorBuilder.toString());
         }
     }
