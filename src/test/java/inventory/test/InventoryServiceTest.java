@@ -1,6 +1,5 @@
 package inventory.test;
 
-import inventory.model.InhousePart;
 import inventory.repository.InventoryRepository;
 import inventory.service.InventoryService;
 import inventory.validator.ValidatorException;
