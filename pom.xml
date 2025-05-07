@@ -123,13 +123,9 @@
                 <version>2.22.1</version>
                 <configuration>
                     <argLine>
-                        --illegal-access=permit
                         --add-opens inventory.test=ALL-UNNAMED
-                        --add-opens inventory.model=ALL-UNNAMED
-                        --add-opens inventory.service=ALL-UNNAMED
-                        --add-opens inventory.repository=ALL-UNNAMED
-                        --add-opens inventory.validator=ALL-UNNAMED
                     </argLine>
+                    <forkCount>0</forkCount> <!--debug-->
                     <!--                          <failIfNoTests>false</failIfNoTests>-->
                 </configuration>
             </plugin>
@@ -137,11 +133,6 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
                 <version>2.22.1</version>
-                <configuration>
-                    <argLine>
-                        --illegal-access=permit
-                    </argLine>
-                </configuration>
             </plugin>
             <plugin>
                 <artifactId>maven-jar-plugin</artifactId>
