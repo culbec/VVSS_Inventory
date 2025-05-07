@@ -1,0 +1,322 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><title>testspec Proiect235 - pair3405_WBT</title>
+<link type="text/css" rel="stylesheet" href="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/css/tl_documents.css" />
+<style type="text/css" media="print">.notprintable { display:none;}</style>
+</head>
+<body>
+<div>
+<div style="float:right;">TestLink Community [configure $tlCfg-&gt;document_generator-&gt;company_name]</div>
+<div>&nbsp;</div><hr />
+<p style="text-align: center;"><img alt="TestLink logo" title="configure using $tlCfg->document_generator->company_logo"  width= height= src="https://www.scs.ubbcluj.ro/testlink/gui/themes/default/images/tl-logo-transparent-25.png" /></p></div>
+<div class="doc_title"><p>Test Specification</p></div>
+<div class="doc_title" style="text-align:left;margin: auto;"><p>Test Project: Proiect235<br/>Test Suite: Proiect235 - pair3405_WBT</p></div>
+<div class="summary"><p id="printedby">Printed by TestLink on 07/05/2025</p></div>
+<div class="pagefooter" id="copyright">2012 &copy; TestLink Community</div>
+<h1 class="general" style="page-break-before: always">Table Of Contents</h1><div class="toc"><p style="padding-left: 20px;"><b><a href="#toc_1">1.pair3405_WBT</a></b></p>
+<p style="padding-left: 45px;"><a href="#toc_tc26449">Prj235-105: Cautare_Produs_Dupa_Nume_TC09</a></p><p style="padding-left: 45px;"><a href="#toc_tc26447">Prj235-104: Cautare_Produs_Dupa_Nume_TC08</a></p><p style="padding-left: 45px;"><a href="#toc_tc26445">Prj235-103: Cautare_Produs_Dupa_Nume_TC07</a></p><p style="padding-left: 45px;"><a href="#toc_tc26442">Prj235-102: Cautare_Produs_Dupa_Nume_TC06</a></p><p style="padding-left: 45px;"><a href="#toc_tc26413">Prj235-95: Cautare_Produs_Dupa_Nume_Existent</a></p><p style="padding-left: 45px;"><a href="#toc_tc26417">Prj235-96: Cautare_Produs_Dupa_Nume_Inexistent</a></p><p style="padding-left: 45px;"><a href="#toc_tc26426">Prj235-97: Cautare_Produs_Dupa_Nume_TC01</a></p><p style="padding-left: 45px;"><a href="#toc_tc26429">Prj235-98: Cautare_Produs_Dupa_Nume_TC02</a></p><p style="padding-left: 45px;"><a href="#toc_tc26432">Prj235-99: Cautare_Produs_Dupa_nume_TC03</a></p><p style="padding-left: 45px;"><a href="#toc_tc26438">Prj235-100: Cautare_Produs_Dupa_Nume_TC04</a></p><p style="padding-left: 45px;"><a href="#toc_tc26440">Prj235-101: Cautare_Produs_Dupa_Nume_TC05</a></p></div><h1 class="doclevel" >Scope</h1>
+<div class="txtlevel"><p>Proiect de testare pentru studentii din grupa 235.</p></div>
+ <br/><a name='toc_1'></a>
+<h1 class='doclevel'>1.Test Suite : pair3405_WBT</h1>
+<div><p>Cautare produs dupa nume.</p>
+</div><a name="toc_tc26449"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-105: Cautare_Produs_Dupa_Nume_TC09&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, in loc de nume avand ID-ul unui produs care nu exista.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;5&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is an ID of a non-existing product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC09_cautareDupaId5</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26447"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-104: Cautare_Produs_Dupa_Nume_TC08&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, in loc de nume avand ID-ul unui produs care exista.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;4&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is an ID of an existing product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC08_cautareDupaId4</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26445"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-103: Cautare_Produs_Dupa_Nume_TC07&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, in loc de nume avand ID-ul unui produs care exista.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;3&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is an ID of an existing product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC07_cautareDupaId3</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26442"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-102: Cautare_Produs_Dupa_Nume_TC06&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, in loc de nume avand ID-ul unui produs care exista.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;2&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is an ID of an existing product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC06_cautareDupaId2</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26413"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-95: Cautare_Produs_Dupa_Nume_Existent&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa numele sau, produsul cu acel nume existand in storage-ul aplicatiei.<br />
+<br />
+<strong>Preconditii</strong></p>
+
+<ul>
+	<li>produsul cu numele specificat sa existe in storage-ul aplicatiei;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>produsul este returnat;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>produsul cu numele specificat sa existe in storage-ul aplicatiei;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26417"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-96: Cautare_Produs_Dupa_Nume_Inexistent&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa numele sau, produsul cu acel nume neexistand in storage-ul aplicatiei.<br />
+<br />
+<strong>Preconditii</strong></p>
+
+<ul>
+	<li>produsul cu numele specificat sa nu existe in storage-ul aplicatiei;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>null</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>produsul cu numele specificat sa nu existe in storage-ul aplicatiei;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" ></td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" ></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26426"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-97: Cautare_Produs_Dupa_Nume_TC01&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume cu input &#39;null&#39;</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem is null;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>produs is null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is null;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC01</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26429"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-98: Cautare_Produs_Dupa_Nume_TC02&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa un nume inexistent</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;telefon&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem == nume inexistent;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC02</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26432"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-99: Cautare_Produs_Dupa_nume_TC03&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautare unui produs dupa nume unde numele este partial din numele complet.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;ceas&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem == partial part of a product&#39;s name;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC03</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26438"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-100: Cautare_Produs_Dupa_Nume_TC04&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, in loc de nume avand ID-ul unui produs care exista.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;1&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is an ID of an existing product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC04</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+<a name="toc_tc26440"></a><p>&nbsp;</p><div> <table class="tc" width="90%" ><tr><th colspan="4">Test Case Prj235-101: Cautare_Produs_Dupa_Nume_TC05&nbsp;<span style="font-size: 80%;">[Version  : 1]</span></th></tr>
+<tr><td width="20%" valign="top"><span class="label">Author:</span></td><td colspan="3">pair3405</td></tr>
+<tr><td colspan="4"><span class="label">Summary:</span><br /><p>Cautarea unui produs dupa nume, avand numele produsului exact.</p>
+
+<p><strong>Preconditii</strong></p>
+
+<ul>
+	<li>searchItem == &quot;lampa&quot;;</li>
+</ul>
+
+<p><strong>Postconditii</strong></p>
+
+<ul>
+	<li>product is not null;</li>
+</ul>
+</td></tr><tr><td colspan="4"><span class="label">Preconditions:</span><br /><ul>
+	<li>searchItem is the exact name of the product;</li>
+</ul>
+</td></tr><tr><td width="20%" valign="top"><span class="label">Execution type:</span></td><td colspan="3">Manual</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Estimated exec. duration (min):</span></td><td colspan="3"></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Importance:</span></td><td colspan="3">Medium</td></tr>
+<tr><td colspan="4"></td></tr><tr><td > name of the autotest class:</td><td  colspan = "3" >product.test.SearchProductTest</td></tr>
+<tr><td > name of the test method:</td><td  colspan = "3" >product.test.SearchProductTest.test_TC05_cautareExactaLampa</td></tr>
+<tr><td width="20%" valign="top"><span class="label">Requirements</span><td colspan="3">&nbsp;None<br /></td></tr>
+<tr><td width="20%" valign="top"><span class="label">Keywords:</span></td><td colspan="3">&nbsp;None<br/></td></tr>
+</table>
+</div>
+
+</body>
+</html>
