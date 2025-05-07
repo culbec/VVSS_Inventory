@@ -218,13 +218,15 @@ public class InventoryRepository {
      * @return The product that matched the search parameter or null if no match
      */
     public Product lookupProduct(String searchItem) {
+        if(searchItem == null)
+            return null;
         for (Product p : allProducts) {
-            if (p.getName().contains(searchItem) || (p.getProductId() + "").equals(searchItem)) {
+            if (p.getName().contains(searchItem))
                 return p;
-            }
+            if( (p.getProductId() + "").equals(searchItem))
+                return p;
         }
-
-        logger.warn("No product with name '{}' found", searchItem);
+        logger.warn("No product with '{}' found", searchItem);
         return null;
     }
 
