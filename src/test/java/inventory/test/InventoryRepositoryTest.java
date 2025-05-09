@@ -1,6 +1,5 @@
 package inventory.test;
 
-import inventory.model.InhousePart;
 import inventory.model.Part;
 import inventory.repository.InventoryRepository;
 import javafx.collections.ObservableList;
@@ -22,26 +21,27 @@ public class InventoryRepositoryTest {
 
     @Test
     void testAddPartAddsToList() {
-        Part part = new InhousePart("Ax", 50.0, 10, 1, 20, 1001);
-        part.setPartId(1);
+        Part mockPart = mock(Part.class);
+        when(mockPart.getPartId()).thenReturn(1);
 
         InventoryRepository spyRepo = Mockito.spy(repo);
 
         // avoid actual file writing
         doNothing().when(spyRepo).writeAll();
 
-        spyRepo.addPart(part);
+        spyRepo.addPart(mockPart);
 
         ObservableList<Part> parts = spyRepo.getAllParts();
-        assertTrue(parts.contains(part));
+        assertTrue(parts.contains(mockPart));
         verify(spyRepo, times(1)).writeAll(); // verify writeAll() is called
     }
 
     @Test
     void testLookupPartByName() {
-        Part part = new InhousePart("Rotor", 100.0, 5, 1, 10, 123);
-        part.setPartId(2);
-        repo.getAllParts().add(part);
+        Part mockPart = mock(Part.class);
+        when(mockPart.getName()).thenReturn("Rotor");
+        when(mockPart.getPartId()).thenReturn(2);
+        repo.getAllParts().add(mockPart);
 
         Part found = repo.lookupPart("Rotor");
         assertNotNull(found);
@@ -50,9 +50,10 @@ public class InventoryRepositoryTest {
 
     @Test
     void testLookupPartById() {
-        Part part = new InhousePart("Blade", 80.0, 3, 1, 10, 321);
-        part.setPartId(5);
-        repo.getAllParts().add(part);
+        Part mockPart = mock(Part.class);
+        when(mockPart.getName()).thenReturn("Blade");
+        when(mockPart.getPartId()).thenReturn(5);
+        repo.getAllParts().add(mockPart);
 
         Part found = repo.lookupPart("5");
         assertNotNull(found);

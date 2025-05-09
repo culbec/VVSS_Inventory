@@ -1,6 +1,5 @@
 package inventory.test;
 
-import inventory.model.InhousePart;
 import inventory.model.Part;
 import inventory.repository.InventoryRepository;
 import inventory.service.InventoryService;
@@ -9,6 +8,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 public class InventoryServiceIntegrationTest {
 
@@ -22,10 +22,11 @@ public class InventoryServiceIntegrationTest {
 
     @Test
     void testAddAndLookupPart_ByName() {
-        Part part = new InhousePart("Rulment", 80.0, 15, 5, 20, 999);
-        part.setPartId(5);
+        Part mockPart = mock(Part.class);
+        when(mockPart.getName()).thenReturn("Rulment");
+        when(mockPart.getPartId()).thenReturn(5);
 
-        service.getAllParts().add(part); // forțăm adăugarea în repo
+        service.getAllParts().add(mockPart); // forțăm adăugarea în repo
 
         Part found = service.lookupPart("Rulment");
         assertNotNull(found);
@@ -34,9 +35,11 @@ public class InventoryServiceIntegrationTest {
 
     @Test
     void testAddAndLookupPart_ById() {
-        Part part = new InhousePart("Ventilator", 120.0, 8, 3, 15, 77);
-        part.setPartId(6);
-        service.getAllParts().add(part);
+        Part mockPart = mock(Part.class);
+        when(mockPart.getName()).thenReturn("Ventilator");
+        when(mockPart.getPartId()).thenReturn(6);
+
+        service.getAllParts().add(mockPart);
 
         Part found = service.lookupPart("6");
         assertNotNull(found);

@@ -40,7 +40,14 @@ public class InventoryServiceMockTest {
 
     @Test
     void testLookupPart_DelegatesToRepo() {
-        Part dummy = new InhousePart("Ax", 50.0, 10, 1, 20, 99);
+        Part dummy = mock(Part.class);
+        when(dummy.getName()).thenReturn("Ax");
+        when(dummy.getPrice()).thenReturn(50.0);
+        when(dummy.getInStock()).thenReturn(10);
+        when(dummy.getMin()).thenReturn(1);
+        when(dummy.getMax()).thenReturn(20);
+        when(dummy.getPartId()).thenReturn(99);
+        when(mockRepo.lookupPart("Ax")).thenReturn(dummy);
         when(mockRepo.lookupPart("Ax")).thenReturn(dummy);
 
         Part result = service.lookupPart("Ax");
