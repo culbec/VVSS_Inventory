@@ -1,0 +1,5 @@
+Search for definitions
+In order to understand a word that I don't know
+As a user
+I want to be able to look up the meaning of the word
+file:///D:/lab5_VVSS/lab5/target/site/serenity/index.html

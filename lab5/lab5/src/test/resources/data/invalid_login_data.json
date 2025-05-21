@@ -1,0 +1,27 @@
+[
+  {
+    "username": "invalid_user",
+    "password": "secret_sauce",
+    "error": "Username and password do not match any user"
+  },
+  {
+    "username": "standard_user",
+    "password": "wrong_password",
+    "error": "Username and password do not match any user"
+  },
+  {
+    "username": "",
+    "password": "secret_sauce",
+    "error": "Username is required"
+  },
+  {
+    "username": "standard_user",
+    "password": "",
+    "error": "Password is required"
+  },
+  {
+    "username": "",
+    "password": "",
+    "error": "Username is required"
+  }
+]
